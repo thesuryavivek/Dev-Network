@@ -1,15 +1,17 @@
-import { NextPage } from "next";
-import Head from "next/head";
+import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-    return (
-        <div className="text-blue-300">
-            <Head>
-                <title>Twitter Clone</title>
-            </Head>
-            <h1>Twitter clone home page</h1>
-        </div>
-    );
+	const fetchSomething = async () => {
+		const res = await fetch("/api/posts");
+		const data = await res.json();
+		console.log(data);
+	};
+
+	return (
+		<h1 className="text-3xl font-bold underline text-red-300">
+			Hello world!
+		</h1>
+	);
 };
 
 export default Home;
