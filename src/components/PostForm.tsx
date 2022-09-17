@@ -9,16 +9,30 @@ type Props = {
 const PostForm = ({ user }: Props) => {
 	const [newPost, setNewPost] = useState("");
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		console.log(event);
+
+		const reqBody = {
+			post: newPost,
+			user,
+		};
+
+		const JSONdata = JSON.stringify(reqBody);
+
+		const res = await fetch("/api/posts", {
+			method: "POST",
+			body: JSONdata,
+		});
+		const data = await res.json();
+		console.log(data);
 	};
 
 	return (
 		<>
 			<Userpic user={user} />
 			<form
-				method="POST"
+				// method="POST"
+				// action="/api/posts"
 				onSubmit={handleSubmit}
 				className="grid place-items-center"
 			>
