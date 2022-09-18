@@ -17,11 +17,9 @@ const PostForm = ({ user }: Props) => {
 			user,
 		};
 
-		const JSONdata = JSON.stringify(reqBody);
-
 		const res = await fetch("/api/posts", {
 			method: "POST",
-			body: JSONdata,
+			body: JSON.stringify(reqBody),
 		});
 		const data = await res.json();
 		console.log(data);
@@ -30,12 +28,7 @@ const PostForm = ({ user }: Props) => {
 	return (
 		<>
 			<Userpic user={user} />
-			<form
-				// method="POST"
-				// action="/api/posts"
-				onSubmit={handleSubmit}
-				className="grid place-items-center"
-			>
+			<form onSubmit={handleSubmit} className="grid place-items-center">
 				<textarea
 					name="post"
 					value={newPost}
