@@ -7,32 +7,34 @@ type Props = {
 };
 
 const PostForm = ({ user }: Props) => {
-	const [newPost, setNewPost] = useState("");
+	const [post, setpost] = useState("");
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		const reqBody = {
-			post: newPost,
-			user,
-		};
+		const newPost = new FormData(event.currentTarget).get("post");
 
 		const res = await fetch("/api/posts", {
 			method: "POST",
-			body: JSON.stringify(reqBody),
+			body: JSON.stringify({ post: newPost }),
 		});
 		const data = await res.json();
 		console.log(data);
+
+		setpost("");
 	};
 
 	return (
 		<>
 			<Userpic user={user} />
-			<form onSubmit={handleSubmit} className="grid place-items-center">
+			<form
+				onSubmit={(event) => handleSubmit(event)}
+				className="grid place-items-center"
+			>
 				<textarea
 					name="post"
-					value={newPost}
-					onChange={(event) => setNewPost(event.target.value)}
+					value={post}
+					onChange={(e) => setpost(e.target.value)}
 					className="border break-words resize-none outline-none w-96 h-24 p-2"
 				/>
 				<input
