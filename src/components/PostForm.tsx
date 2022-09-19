@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Userpic from "./Userpic";
 import { userData } from "../types";
 
@@ -8,27 +9,33 @@ type Props = {
 
 const PostForm = ({ user }: Props) => {
 	const [post, setpost] = useState("");
+	const queryClient = useQueryClient();
 
-	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-
-		const newPost = new FormData(event.currentTarget).get("post");
-
-		const res = await fetch("/api/posts", {
-			method: "POST",
-			body: JSON.stringify({ post: newPost }),
-		});
-		const data = await res.json();
-		console.log(data);
-
-		setpost("");
-	};
+	const addPost = useMutation(
+		async (newPost: FormDataEntryValue | null) => {
+			await fetch("/api/posts", {
+				method: "POST",
+				body: JSON.stringify({ post: newPost }),
+			});
+		},
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries(["posts"]);
+			},
+		}
+	);
 
 	return (
 		<>
 			<Userpic user={user} />
 			<form
-				onSubmit={(event) => handleSubmit(event)}
+				onSubmit={(event) => {
+					event.preventDefault();
+					addPost.mutate(
+						new FormData(event.currentTarget).get("post")
+					);
+					setpost("");
+				}}
 				className="grid place-items-center"
 			>
 				<textarea
