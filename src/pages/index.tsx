@@ -14,7 +14,6 @@ const Home: NextPage = () => {
 	const [user, setUser] = useState<userData | null>(null);
 
 	const queryClient = new QueryClient();
-	console.log(process.env.NODE_ENV);
 	return (
 		<>
 			<QueryClientProvider client={queryClient}>
