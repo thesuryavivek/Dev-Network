@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 //Imports from react and next js
 import type { NextPage } from "next";
@@ -13,7 +14,7 @@ const Home: NextPage = () => {
 	const [user, setUser] = useState<userData | null>(null);
 
 	const queryClient = new QueryClient();
-
+	console.log(process.env.NODE_ENV);
 	return (
 		<>
 			<QueryClientProvider client={queryClient}>
@@ -29,6 +30,7 @@ const Home: NextPage = () => {
 					click
 				</button>
 				{user?.username}
+				<ReactQueryDevtools initialIsOpen={false} />
 			</QueryClientProvider>
 		</>
 	);

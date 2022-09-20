@@ -11,19 +11,19 @@ const PostForm = ({ user }: Props) => {
 	const [post, setpost] = useState("");
 	const queryClient = useQueryClient();
 
-	const addPost = useMutation(
-		async (newPost: FormDataEntryValue | null) => {
-			await fetch("/api/posts", {
-				method: "POST",
-				body: JSON.stringify({ post: newPost }),
-			});
+	const addPost = async (newPost: FormDataEntryValue | null) => {
+		const res = await fetch("/api/posts", {
+			method: "POST",
+			body: JSON.stringify({ post: newPost }),
+		});
+		return await res.json();
+	};
+
+	const mutation = useMutation(addPost, {
+		onSuccess: (data) => {
+			queryClient.setQueryData(["posts"], data);
 		},
-		{
-			onSuccess: () => {
-				queryClient.invalidateQueries(["posts"]);
-			},
-		}
-	);
+	});
 
 	return (
 		<>
@@ -31,7 +31,7 @@ const PostForm = ({ user }: Props) => {
 			<form
 				onSubmit={(event) => {
 					event.preventDefault();
-					addPost.mutate(
+					mutation.mutate(
 						new FormData(event.currentTarget).get("post")
 					);
 					setpost("");
@@ -42,8 +42,9 @@ const PostForm = ({ user }: Props) => {
 					name="post"
 					value={post}
 					onChange={(e) => setpost(e.target.value)}
-					className="border break-words resize-none outline-none w-96 h-24 p-2"
+					className='border resize-none overflow-hidden outline-none h-12 w-96 p-2 after:content-[attr(data-replicated-value)" "] after:whitespace-pre-wrap after:invisible after:border after:p-2'
 				/>
+
 				<input
 					type="submit"
 					value="post"
