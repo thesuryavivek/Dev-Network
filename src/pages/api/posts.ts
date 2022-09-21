@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../db/prisma";
+import { prisma } from "../../utils/prisma";
 
 const ALL_POSTS: string[] = ["1st post"];
 
