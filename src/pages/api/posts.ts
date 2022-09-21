@@ -2,17 +2,25 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../utils/prisma";
 
-const ALL_POSTS: string[] = ["1st post"];
-
 export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
 	if (req.method === "POST") {
 		const body = JSON.parse(req.body);
-		ALL_POSTS.push(body.post);
+		await prisma.post.create({
+			data: {
+				title: body.post,
+				authorId: 1,
+			},
+		});
+		console.log(body);
 	}
-	const posts = await prisma.post.findMany();
+	const posts = await prisma.post.findMany({
+		orderBy: {
+			createdAt: "desc",
+		},
+	});
 
 	res.status(200).json(posts);
 }

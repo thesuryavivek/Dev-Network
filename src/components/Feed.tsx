@@ -17,14 +17,15 @@ const Feed = () => {
 	if (isError) {
 		return <span>Error occurred! {error?.message}</span>;
 	}
-	console.log(data);
 
 	return (
 		<>
 			<div>Feed</div>
 			<ul>
 				{data?.map((post: any) => (
-					<li key={post}>{post}</li>
+					<li key={post.id}>
+						{post.id}.{post.title}
+					</li>
 				))}
 			</ul>
 		</>
