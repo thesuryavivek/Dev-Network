@@ -17,6 +17,7 @@ const Feed = () => {
 	if (isError) {
 		return <span>Error occurred! {error?.message}</span>;
 	}
+	console.log(data);
 
 	return (
 		<>

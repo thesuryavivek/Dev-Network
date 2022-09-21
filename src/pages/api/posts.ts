@@ -4,11 +4,15 @@ import { prisma } from "../../utils/prisma";
 
 const ALL_POSTS: string[] = ["1st post"];
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+	req: NextApiRequest,
+	res: NextApiResponse
+) {
 	if (req.method === "POST") {
 		const body = JSON.parse(req.body);
 		ALL_POSTS.push(body.post);
 	}
+	const posts = await prisma.post.findMany();
 
-	res.status(200).json(ALL_POSTS);
+	res.status(200).json(posts);
 }

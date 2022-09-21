@@ -3,13 +3,23 @@ import { faker } from "@faker-js/faker";
 
 const prisma = new PrismaClient();
 
-const load = async (n: number) => {
+const load = async (numberOfUsers: number) => {
 	try {
 		await prisma.user.deleteMany();
+		await prisma.post.deleteMany();
 
-		const allUsers = [];
+		const generateRandomPosts = () => {
+			const randomNumber = Math.floor(Math.random() * 4);
+			const randomPosts: { title: string }[] = [];
+			for (let i = 0; i < randomNumber; i++) {
+				randomPosts.push({
+					title: faker.lorem.sentences(),
+				});
+			}
+			return randomPosts;
+		};
 
-		for (let i = 0; i < n; i++) {
+		for (let i = 0; i < numberOfUsers; i++) {
 			const firstName = faker.name.firstName();
 			const lastName = faker.name.lastName();
 			const email = faker.internet.email(
@@ -22,16 +32,18 @@ const load = async (n: number) => {
 			);
 			const fullName = `${firstName} ${lastName}`;
 
-			allUsers.push({
-				email,
-				name: fullName,
+			await prisma.user.create({
+				data: {
+					email,
+					name: fullName,
+					posts: {
+						create: generateRandomPosts(),
+					},
+				},
 			});
 		}
 
-		const userCount = await prisma.user.createMany({
-			data: allUsers,
-		});
-		console.log({ userCount });
+		console.log("DB seeded...");
 	} catch (error) {
 		console.error(error);
 	} finally {

@@ -11,14 +11,14 @@ datasource db {
 }
 
 model Post {
-    id       String  @id @default(cuid())
+    id       Int    @id @default(autoincrement())
     title    String
-    author   User?   @relation(fields: [authorId], references: [id])
-    authorId String?
+    author   User?  @relation(fields: [authorId], references: [id])
+    authorId Int?
 }
 
 model User {
-    id    String  @id @default(cuid())
+    id    Int     @id @default(autoincrement())
     email String  @unique
     name  String?
     posts Post[]
