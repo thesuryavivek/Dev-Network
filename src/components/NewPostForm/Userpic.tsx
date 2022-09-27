@@ -1,9 +1,4 @@
 import Link from "next/link";
-import { userData } from "../types";
-
-type Props = {
-	user: userData | null;
-};
 
 const Userpic = () => {
 	return (

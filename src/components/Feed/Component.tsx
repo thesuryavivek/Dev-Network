@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import Post from "./Post";
 
 const Feed = () => {
 	const { isLoading, data, isError, error } = useQuery<string[], Error>(
@@ -20,14 +21,9 @@ const Feed = () => {
 
 	return (
 		<>
-			<div>Feed</div>
-			<ul>
-				{data?.map((post: any) => (
-					<li key={post.id}>
-						{post.id}.{post.title}
-					</li>
-				))}
-			</ul>
+			{data?.map((post: any) => (
+				<Post key={post.id} title={post.title} />
+			))}
 		</>
 	);
 };

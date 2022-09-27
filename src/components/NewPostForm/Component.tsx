@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Userpic from "./Userpic";
-import { userData } from "../types";
-
-type Props = {
-	user: userData | null;
-};
 
 const PostForm = () => {
 	const [post, setpost] = useState("");
