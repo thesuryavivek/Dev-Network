@@ -9,11 +9,11 @@ const load = async (numberOfUsers: number) => {
 		await prisma.post.deleteMany();
 
 		const generateRandomPosts = () => {
-			const randomNumber = Math.floor(Math.random() * 4);
+			const randomNumber = Math.floor(Math.random() * 10);
 			const randomPosts: { title: string }[] = [];
 			for (let i = 0; i < randomNumber; i++) {
 				randomPosts.push({
-					title: faker.lorem.sentences(),
+					title: faker.lorem.sentences(2),
 				});
 			}
 			return randomPosts;
@@ -34,8 +34,8 @@ const load = async (numberOfUsers: number) => {
 
 			await prisma.user.create({
 				data: {
-					email,
 					name: fullName,
+					email,
 					posts: {
 						create: generateRandomPosts(),
 					},
@@ -51,4 +51,4 @@ const load = async (numberOfUsers: number) => {
 	}
 };
 
-load(50);
+load(70);

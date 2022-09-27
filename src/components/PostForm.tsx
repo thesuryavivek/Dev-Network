@@ -7,7 +7,7 @@ type Props = {
 	user: userData | null;
 };
 
-const PostForm = ({ user }: Props) => {
+const PostForm = () => {
 	const [post, setpost] = useState("");
 	const queryClient = useQueryClient();
 
@@ -27,7 +27,7 @@ const PostForm = ({ user }: Props) => {
 
 	return (
 		<>
-			<Userpic user={user} />
+			<Userpic />
 			<form
 				onSubmit={(event) => {
 					event.preventDefault();

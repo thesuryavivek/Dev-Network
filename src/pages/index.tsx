@@ -9,26 +9,38 @@ import { useState } from "react";
 import PostForm from "../components/PostForm";
 import Feed from "../components/Feed";
 import { userData } from "../types";
+import useUserStore from "../utils/stores/userStore";
 
 const Home: NextPage = () => {
-	const [user, setUser] = useState<userData | null>(null);
+	// const [user, setUser] = useState<userData | null>(null);
 
 	const queryClient = new QueryClient();
+
+	const userId = useUserStore((state: any) => state.userId);
+	const username = useUserStore((state: any) => state.username);
+	const loginUser = useUserStore((state: any) => state.loginUser);
+	const logoutUser = useUserStore((state: any) => state.logoutUser);
 	return (
 		<>
 			<QueryClientProvider client={queryClient}>
-				<PostForm user={user} />
+				<PostForm />
 				<h1 className="text-3xl font-bold text-slate-500">
-					This is the home page of the user that has feed 🐈🐈...
+					This is the home page {userId}, {username}
 				</h1>
-				<Feed />
 				<button
-					onClick={() => setUser({ id: 1, username: "suryavivek" })}
+					onClick={() => loginUser(12, "surya")}
 					className="px-4 py-2 m-4 rounded border hover:bg-slate-100"
 				>
-					click
+					login
 				</button>
-				{user?.username}
+				<button
+					onClick={logoutUser}
+					className="px-4 py-2 m-4 rounded border hover:bg-slate-100"
+				>
+					logout
+				</button>
+
+				<Feed />
 				<ReactQueryDevtools initialIsOpen={false} />
 			</QueryClientProvider>
 		</>
