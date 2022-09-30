@@ -32,7 +32,7 @@ const Home: NextPage = () => {
 						</Body>
 					</App>
 				*/}
-				<div className="w-screen h-screen overflow-x-hidden">
+				<div className="h-screen w-screen overflow-x-hidden">
 					<Nav />
 					<Body />
 				</div>
