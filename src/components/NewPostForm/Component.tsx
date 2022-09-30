@@ -22,7 +22,7 @@ const PostForm = () => {
 
 	return (
 		<>
-			<Userpic />
+			{/* <Userpic /> */}
 			<form
 				onSubmit={(event) => {
 					event.preventDefault();

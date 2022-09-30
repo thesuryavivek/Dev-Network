@@ -20,11 +20,11 @@ const Feed = () => {
 	}
 
 	return (
-		<>
+		<div className="py-12">
 			{data?.map((post: any) => (
 				<Post key={post.id} title={post.title} />
 			))}
-		</>
+		</div>
 	);
 };
 

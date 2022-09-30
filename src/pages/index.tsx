@@ -5,8 +5,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { NextPage } from "next";
 
 //Components, stores and types
-// import PostForm from "../components/PostForm";
-// import Feed from "../components/Feed";
 import Nav from "../components/Nav";
 import Body from "../components/Body";
 
@@ -34,11 +32,11 @@ const Home: NextPage = () => {
 						</Body>
 					</App>
 				*/}
-				<Nav />
-				<Body />
-				{/* <PostForm /> */}
+				<div className="w-screen h-screen overflow-x-hidden">
+					<Nav />
+					<Body />
+				</div>
 
-				{/* <Feed /> */}
 				<ReactQueryDevtools initialIsOpen={false} />
 			</QueryClientProvider>
 		</>
