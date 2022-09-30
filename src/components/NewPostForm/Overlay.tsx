@@ -23,12 +23,21 @@ const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 		},
 	});
 
+	const checkOverlay = (event: any) => {
+		if (event.target.classList[0] === "overlay") {
+			closeOverlay(false);
+		}
+	};
+
 	return (
-		<div className="absolute inset-0 z-20 flex items-center justify-center bg-white">
+		<div
+			onClick={(event) => checkOverlay(event)}
+			className="overlay absolute inset-0 z-20 flex items-center justify-center bg-white"
+		>
 			<div className="flex h-4/5 w-3/5 flex-col rounded-md bg-blue-50">
 				<button
 					onClick={() => closeOverlay(false)}
-					className="m-4 ml-auto h-8 w-8 cursor-pointer rounded-full text-center font-bold hover:scale-125 hover:bg-blue-100"
+					className="m-4 ml-auto h-8 w-8 cursor-pointer rounded-full text-center font-bold duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-blue-100"
 				>
 					&times;
 				</button>
@@ -39,20 +48,21 @@ const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 						mutation.mutate(post);
 						setpost("");
 					}}
-					className="grid place-items-center"
+					className="grid h-4/5 w-full place-items-center p-8"
 				>
 					<textarea
 						name="post"
 						value={post}
 						onChange={(e) => setpost(e.target.value)}
-						className="h-12 w-96 border p-2 outline-none"
+						placeholder="What's on your mind?"
+						className="h-full w-full resize-none bg-transparent p-2 outline-none"
 					/>
 
 					<input
 						disabled={post.length === 0}
 						type="submit"
 						value="post"
-						className="my-4 cursor-pointer rounded border px-4 py-2 hover:bg-slate-50"
+						className="my-4 cursor-pointer rounded border px-4 py-2 disabled:cursor-not-allowed disabled:border-red-300"
 					/>
 				</form>
 			</div>
