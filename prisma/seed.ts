@@ -10,7 +10,7 @@ const load = async (numberOfUsers: number) => {
 
 		const generateRandomPosts = () => {
 			const randomNumber = Math.floor(Math.random() * 10);
-			const randomPosts: { title: string }[] = [];
+			const randomPosts = [];
 			for (let i = 0; i < randomNumber; i++) {
 				randomPosts.push({
 					title: faker.lorem.sentences(2),
