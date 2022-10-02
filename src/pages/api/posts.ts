@@ -21,5 +21,5 @@ export default async function handler(
 		},
 	});
 
-	res.status(200).json(posts);
+	res.status(200).json({ data: "something" });
 }
