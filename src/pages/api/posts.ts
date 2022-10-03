@@ -18,9 +18,9 @@ export default async function handler(
 		}
 		const posts = await prisma.post.findMany();
 
-		res.status(200).json(posts);
+		return res.status(200).json(posts);
 	} catch (error) {
 		console.log(error);
-		res.status(403).json(error);
+		return res.status(403).json(error);
 	}
 }
