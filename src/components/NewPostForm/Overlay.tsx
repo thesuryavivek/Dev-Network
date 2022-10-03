@@ -70,7 +70,7 @@ const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 							value={post}
 							onChange={(e) => setpost(e.target.value)}
 							placeholder="What's on your mind?"
-							className="h-full w-full flex-1 resize-none rounded-md border border-blue-300 bg-transparent p-4 outline-none focus:border-blue-500"
+							className="h-full w-full flex-1 resize-none rounded-md border border-blue-300 bg-transparent p-4 outline-none focus:border-blue-400"
 						/>
 
 						<input
