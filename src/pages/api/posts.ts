@@ -16,7 +16,11 @@ export default async function handler(
 			});
 			console.log(body);
 		}
-		const posts = await prisma.post.findMany();
+		const posts = await prisma.post.findMany({
+			orderBy: {
+				createdAt: "desc",
+			},
+		});
 
 		res.status(200).json(posts);
 	} catch (error) {

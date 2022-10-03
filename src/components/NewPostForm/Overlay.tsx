@@ -41,7 +41,7 @@ const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 					<span className="text-2xl">Create a new post</span>
 					<button
 						onClick={() => closeOverlay(false)}
-						className="m-4 cursor-pointer text-center text-3xl font-bold duration-200 hover:scale-105"
+						className="m-4 cursor-pointer text-center text-3xl font-bold duration-200 hover:scale-125"
 					>
 						<span>&times;</span>
 					</button>
