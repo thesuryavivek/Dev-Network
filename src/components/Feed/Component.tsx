@@ -5,9 +5,9 @@ const Feed = () => {
 	const { isLoading, data, isError, error } = useQuery<string[], Error>(
 		["posts"],
 		async () => {
-			const res = await fetch("/api/posts");
-			const data = await res.json();
-			return data;
+			const postsRes = await fetch("/api/posts");
+			const postsData = await postsRes.json();
+			return postsData;
 		}
 	);
 
@@ -20,7 +20,7 @@ const Feed = () => {
 	}
 
 	return (
-		<div className="py-12">
+		<div className="space-y-4 py-4">
 			{data?.map((post: any) => (
 				<Post key={post.id} title={post.title} />
 			))}

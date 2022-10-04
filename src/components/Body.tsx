@@ -11,7 +11,7 @@ const Body = () => {
 			<section className="w-1/5">
 				<Sidebar />
 			</section>
-			<main className="w-[50%] rounded-md bg-blue-200">
+			<main className="w-1/2">
 				<NewPostForm />
 				<Feed />
 			</main>

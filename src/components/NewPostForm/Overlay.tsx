@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import Userpic from "./Userpic";
+import Userpic from "../UserPic";
 
 type Props = {
 	closeOverlay: React.Dispatch<React.SetStateAction<boolean>>;
@@ -51,9 +51,9 @@ const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 						<div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-blue-200">
 							<Userpic height={40} width={40} />
 						</div>
-						<div>
+						<div className="text-left">
 							<div className="text-xl">Surya Vivek</div>
-							<div>@username</div>
+							<p className="text-sm">@username</p>
 						</div>
 					</div>
 

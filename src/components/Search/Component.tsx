@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const Search = () => {
 	const [searchTerm, setSearchTerm] = useState<string>();
+	const inputRef = useRef(null);
 
 	return (
 		<div className="mb-4 flex items-center rounded-full bg-blue-50 focus-within:outline focus-within:outline-1 focus-within:outline-blue-900">
@@ -23,9 +24,10 @@ const Search = () => {
 			</div>
 			<input
 				type="text"
+				ref={inputRef}
 				value={searchTerm}
 				onChange={(e) => setSearchTerm(e.target.value)}
-				className="rounded-full border-none bg-blue-50 p-4 text-lg outline-none"
+				className="w-full flex-1 rounded-full border-none bg-blue-50 p-4 text-lg outline-none"
 			/>
 			{/* {searchTerm} */}
 		</div>

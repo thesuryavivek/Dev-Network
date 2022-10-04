@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Userpic from "./Userpic";
+import Userpic from "../UserPic";
 import Overlay from "./Overlay";
 
 const PostForm = () => {
