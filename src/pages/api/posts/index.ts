@@ -1,3 +1,4 @@
+import { Post, User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../utils/prisma";
 
@@ -16,13 +17,22 @@ export default async function handler(
 			});
 			console.log(body);
 		}
+
 		const posts = await prisma.post.findMany({
 			orderBy: {
 				createdAt: "desc",
 			},
 		});
 
-		res.status(200).json(posts);
+		const users = await Promise.all(
+			posts.map(
+				async (post) =>
+					await prisma.user.findUnique({
+						where: { id: post.authorId },
+					})
+			)
+		);
+		res.status(200).json({ posts, users });
 	} catch (error) {
 		console.log(error);
 		res.status(403).json(error);

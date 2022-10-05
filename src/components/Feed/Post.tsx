@@ -14,7 +14,7 @@ const Post = ({ title }: { title: string }) => {
 				</div>
 			</div>
 			<div className="flex-1 space-y-4 text-left">
-				<div className="py-1">
+				<div className="pt-1">
 					<span>Surya Vivek</span>
 					<p className="text-sm">@username</p>
 				</div>

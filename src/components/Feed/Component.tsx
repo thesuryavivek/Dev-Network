@@ -21,9 +21,9 @@ const Feed = () => {
 
 	return (
 		<div className="space-y-4 py-4">
-			{data?.map((post: any) => (
+			{/* {data?.map((post: any) => (
 				<Post key={post.id} title={post.title} />
-			))}
+			))} */}
 		</div>
 	);
 };

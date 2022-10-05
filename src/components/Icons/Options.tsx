@@ -1,6 +1,6 @@
 const OptionsIcon = () => {
 	return (
-		<span>
+		<span className="cursor-pointer rounded-full p-1 hover:bg-white hover:bg-opacity-50">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
