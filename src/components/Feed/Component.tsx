@@ -1,8 +1,9 @@
+import type { Post } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
-import Post from "./Post";
+import PostComponent from "./Post";
 
 const Feed = () => {
-	const { isLoading, data, isError, error } = useQuery<string[], Error>(
+	const { isLoading, data, isError, error } = useQuery<Post[], Error>(
 		["posts"],
 		async () => {
 			const postsRes = await fetch("/api/posts");
@@ -21,9 +22,13 @@ const Feed = () => {
 
 	return (
 		<div className="space-y-4 py-4">
-			{/* {data?.map((post: any) => (
-				<Post key={post.id} title={post.title} />
-			))} */}
+			{data?.map((post: Post) => (
+				<PostComponent
+					key={post.id}
+					authorId={post.authorId}
+					title={post.title}
+				/>
+			))}
 		</div>
 	);
 };

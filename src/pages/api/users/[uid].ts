@@ -5,9 +5,14 @@ export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
+	const { uid } = req.query;
 	try {
-		const users = await prisma.user.findMany();
-		res.status(200).json(users);
+		const user = await prisma.user.findUnique({
+			where: {
+				id: Number(uid),
+			},
+		});
+		res.status(200).json(user);
 	} catch (error) {
 		res.status(500).json(error);
 	}
