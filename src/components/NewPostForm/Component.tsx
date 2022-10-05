@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import Userpic from "../UserPic";
 import Overlay from "./Overlay";
+import { userAtom } from "../../utils/userStore";
+import { useAtom } from "jotai";
 
 const PostForm = () => {
 	const [isOverlay, setIsOverlay] = useState<boolean>(false);
+	const [userDetails, setUserDetails] = useAtom(userAtom);
 
 	return (
 		<div className="flex items-center justify-between rounded-md bg-blue-100 px-4 py-8">
 			<div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-blue-200">
-				<Userpic height={50} width={50} />
+				<Userpic height={50} width={50} hash={userDetails.picHash} />
 			</div>
 			<div className="h-full w-4/5">
 				<input
