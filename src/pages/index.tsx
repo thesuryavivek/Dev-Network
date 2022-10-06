@@ -1,45 +1,23 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-//Imports from next js
 import type { NextPage } from "next";
-
-//Components, stores and types
 import Nav from "../components/Nav";
 import Body from "../components/Body";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-	// const [user, setUser] = useState<userData | null>(null);
-
 	const queryClient = new QueryClient();
+	const hello = trpc.useQuery(["hello", { text: "client" }]);
 
 	return (
-		<>
-			<QueryClientProvider client={queryClient}>
-				{/* 
-					<App>
-						<Nav/>
-						<Body>
-							<Sidebar>
-								<Profile/>
-								<Footer/>
-							</Sidebar>
-							<Main>
-								<Form/>
-								<Feed data-fetching-client-side scrollable={true}/>
-							</Main>
-							<RightBar/>
-						</Body>
-					</App>
-				*/}
-				<div className="h-screen w-screen overflow-x-hidden">
-					<Nav />
-					<Body />
-				</div>
-
-				<ReactQueryDevtools initialIsOpen={false} />
-			</QueryClientProvider>
-		</>
+		<QueryClientProvider client={queryClient}>
+			<div className="h-screen w-screen overflow-x-hidden">
+				{/* <Nav /> */}
+				{/* <Body /> */}
+				{hello.data?.greeting}
+			</div>
+			<ReactQueryDevtools initialIsOpen={false} />
+		</QueryClientProvider>
 	);
 };
 
