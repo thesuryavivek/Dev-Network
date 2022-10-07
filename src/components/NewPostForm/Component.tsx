@@ -20,7 +20,7 @@ const PostForm = () => {
 					className="w-full rounded-full border-none bg-blue-50 p-4 px-8 text-lg outline-none"
 				/>
 			</div>
-			{isOverlay && <Overlay closeOverlay={setIsOverlay} />}
+			{/* {isOverlay && <Overlay closeOverlay={setIsOverlay} />} */}
 		</div>
 	);
 };

@@ -1,23 +1,17 @@
 import type { NextPage } from "next";
-import Nav from "../components/Nav";
-import Body from "../components/Body";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { trpc } from "../utils/trpc";
+import Nav from "@/components/Nav";
+import Body from "@/components/Body";
+// import { trpc } from "@/utils/trpc";
 
 const Home: NextPage = () => {
-	const queryClient = new QueryClient();
-	const hello = trpc.useQuery(["hello", { text: "client" }]);
+	// const hello = trpc.useQuery(["get", { text: "surya" }]);
 
 	return (
-		<QueryClientProvider client={queryClient}>
-			<div className="h-screen w-screen overflow-x-hidden">
-				{/* <Nav /> */}
-				{/* <Body /> */}
-				{hello.data?.greeting}
-			</div>
-			<ReactQueryDevtools initialIsOpen={false} />
-		</QueryClientProvider>
+		<div className="h-screen w-screen overflow-x-hidden">
+			<Nav />
+			<Body />
+			{/* {hello.data?.greeting} */}
+		</div>
 	);
 };
 
