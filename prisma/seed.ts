@@ -39,7 +39,10 @@ const load = async (numberOfUsers: number) => {
 					email,
 					username,
 					posts: {
-						create: generateRandomPosts(),
+						// create: generateRandomPosts(),
+						createMany: {
+							data: generateRandomPosts(),
+						},
 					},
 				},
 			});
