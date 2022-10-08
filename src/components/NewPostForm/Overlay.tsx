@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Userpic from "../UserPic";
 import { useAtom } from "jotai";
 import { userAtom } from "../../utils/userStore";
+import { trpc } from "@/utils/trpc";
 
 type Props = {
 	closeOverlay: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,23 +10,24 @@ type Props = {
 
 const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 	const [post, setpost] = useState("");
-	const [userDetails, setUserDetails] = useAtom(userAtom);
-	const queryClient = useQueryClient();
+	// const [userDetails, setUserDetails] = useAtom(userAtom);
+	// // const queryClient = useQueryClient();
+	// const queryClient = trpc.
 
-	const addPost = async (newPost: string) => {
-		const res = await fetch("/api/posts", {
-			method: "POST",
-			body: JSON.stringify({ post: newPost }),
-		});
-		return await res.json();
-	};
+	// const addPost = async (newPost: string) => {
+	// 	const res = await fetch("/api/posts", {
+	// 		method: "POST",
+	// 		body: JSON.stringify({ post: newPost }),
+	// 	});
+	// 	return await res.json();
+	// };
 
-	const mutation = useMutation(addPost, {
-		onSuccess: (data) => {
-			queryClient.setQueryData(["posts"], data);
-			closeOverlay(false);
-		},
-	});
+	// const mutation = useMutation(addPost, {
+	// 	onSuccess: (data) => {
+	// 		queryClient.setQueryData(["posts"], data);
+	// 		closeOverlay(false);
+	// 	},
+	// });
 
 	const checkOverlay = (event: any) => {
 		if (event.target.classList[0] === "overlay") {
@@ -52,11 +53,7 @@ const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 				<div className="flex flex-1 flex-col justify-between  px-8 py-4">
 					<div className="mb-4 flex w-1/2 items-center space-x-4  text-center">
 						<div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-blue-200">
-							<Userpic
-								height={40}
-								width={40}
-								hash={userDetails.picHash}
-							/>
+							<Userpic height={40} width={40} hash={1} />
 						</div>
 						<div className="text-left">
 							<div className="text-xl">Surya Vivek</div>
@@ -67,7 +64,7 @@ const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 					<form
 						onSubmit={(event) => {
 							event.preventDefault();
-							mutation.mutate(post.trim());
+							// mutation.mutate(post.trim());
 							setpost("");
 						}}
 						className="flex h-4/5 w-full flex-col space-y-4 "
