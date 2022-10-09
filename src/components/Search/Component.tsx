@@ -5,7 +5,7 @@ const Search = () => {
 	const inputRef = useRef(null);
 
 	return (
-		<div className="mb-4 flex items-center rounded-full bg-blue-50 focus-within:outline focus-within:outline-1 focus-within:outline-blue-900">
+		<div className="mb-4 flex items-center rounded-lg bg-blue-100 focus-within:bg-blue-50 focus-within:outline focus-within:outline-1 focus-within:outline-blue-900">
 			<div className="ml-4">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@ const Search = () => {
 				ref={inputRef}
 				value={searchTerm}
 				onChange={(e) => setSearchTerm(e.target.value)}
-				className="w-full flex-1 rounded-full border-none bg-blue-50 p-4 text-lg outline-none"
+				className="w-full flex-1 border-none bg-blue-100 p-4 text-lg outline-none focus:bg-blue-50"
 			/>
 			{/* {searchTerm} */}
 		</div>

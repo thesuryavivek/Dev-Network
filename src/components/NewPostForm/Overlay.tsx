@@ -52,7 +52,7 @@ const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 				</div>
 				<div className="flex flex-1 flex-col justify-between  px-8 py-4">
 					<div className="mb-4 flex w-1/2 items-center space-x-4  text-center">
-						<div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-blue-200">
+						<div className="flex h-16 w-16 items-center justify-center -hidden rounded-full bg-blue-200">
 							<Userpic height={40} width={40} hash={1} />
 						</div>
 						<div className="text-left">

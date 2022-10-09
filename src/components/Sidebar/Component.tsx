@@ -7,7 +7,7 @@ const Component = () => {
 	const [userDetails, setUserDetails] = useAtom(userAtom);
 
 	return (
-		<div className="sticky top-24 flex w-full flex-col items-center rounded-md bg-blue-100 py-8 text-center">
+		<div className="sticky top-10 flex w-full flex-col items-center rounded-md bg-blue-100 py-8 text-center">
 			<div className="flex h-32 w-32 items-center justify-center rounded-full bg-blue-200">
 				<Userpic height={80} width={80} hash={userDetails.picHash} />
 			</div>

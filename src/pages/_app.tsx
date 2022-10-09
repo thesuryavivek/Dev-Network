@@ -10,7 +10,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 			<Head>
 				<title>Social media demo app</title>
 			</Head>
-			<Component {...pageProps} />;
+			<div className="w-screen overflow-x-hidden">
+				<Component {...pageProps} />
+			</div>
 		</>
 	);
 };
