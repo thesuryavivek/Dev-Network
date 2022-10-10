@@ -13,14 +13,14 @@ const PostForm = () => {
 			<div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-blue-200">
 				<Userpic height={50} width={50} hash={userDetails.picHash} />
 			</div>
-			<div className="h-full w-4/5">
+			<div className="h-full w-4/5 cursor-pointer">
 				<input
 					type="text"
 					onFocus={() => setIsOverlay(true)}
-					className="w-full rounded-full border-none bg-blue-50 p-4 px-8 text-lg outline-none"
+					className="w-full cursor-pointer rounded-md border-none bg-blue-50 p-4 text-lg outline-none"
 				/>
 			</div>
-			{/* {isOverlay && <Overlay closeOverlay={setIsOverlay} />} */}
+			{isOverlay && <Overlay closeOverlay={setIsOverlay} />}
 		</div>
 	);
 };

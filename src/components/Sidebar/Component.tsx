@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 import { userAtom } from "../../utils/userStore";
 
 const Component = () => {
-	const [userDetails, setUserDetails] = useAtom(userAtom);
+	const [userDetails] = useAtom(userAtom);
 
 	return (
 		<div className="sticky top-10 flex w-full flex-col items-center rounded-md bg-blue-100 py-8 text-center">
@@ -12,8 +12,9 @@ const Component = () => {
 				<Userpic height={80} width={80} hash={userDetails.picHash} />
 			</div>
 			<div>
-				<h6 className="my-4 text-xl font-medium">Surya Vivek</h6>
-				<p className="pb-4 text-sm">Full stack developer</p>
+				<h6 className="mt-4 text-xl font-medium">{userDetails.name}</h6>
+				<p className="text-sm">@{userDetails.username}</p>
+				<p className="py-4 text-sm">Full stack developer</p>
 			</div>
 			<div className="w-full border border-t-blue-200 py-4">
 				<span className="text-lg font-medium">Followers:</span>

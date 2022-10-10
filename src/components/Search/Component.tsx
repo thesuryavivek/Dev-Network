@@ -5,7 +5,7 @@ const Search = () => {
 	const inputRef = useRef(null);
 
 	return (
-		<div className="mb-4 flex items-center rounded-lg bg-blue-100 focus-within:bg-blue-50 focus-within:outline focus-within:outline-1 focus-within:outline-blue-900">
+		<div className="mb-4 flex items-center rounded-md bg-blue-100 focus-within:bg-blue-50 focus-within:outline focus-within:outline-1 focus-within:outline-blue-900">
 			<div className="ml-4">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
