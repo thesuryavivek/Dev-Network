@@ -1,7 +1,7 @@
 import React from "react";
 import Userpic from "../UserPic";
 import { useAtom } from "jotai";
-import { userAtom } from "../../utils/userStore";
+import { userAtom } from "../../utils/store";
 
 const Component = () => {
 	const [userDetails] = useAtom(userAtom);
@@ -9,7 +9,7 @@ const Component = () => {
 	return (
 		<div className="sticky top-10 flex w-full flex-col items-center rounded-md bg-blue-100 py-8 text-center">
 			<div className="flex h-32 w-32 items-center justify-center rounded-full bg-blue-200">
-				<Userpic height={80} width={80} hash={userDetails.picHash} />
+				<Userpic height={80} width={80} hash={userDetails.userId} />
 			</div>
 			<div>
 				<h6 className="mt-4 text-xl font-medium">{userDetails.name}</h6>

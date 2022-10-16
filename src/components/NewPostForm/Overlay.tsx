@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Userpic from "../UserPic";
 import { useAtom } from "jotai";
-import { userAtom } from "../../utils/userStore";
+import { userAtom } from "../../utils/store";
 import { trpc } from "@/utils/trpc";
 
 type Props = {
@@ -47,7 +47,7 @@ const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 							<Userpic
 								height={40}
 								width={40}
-								hash={userDetails.picHash}
+								hash={userDetails.userId}
 							/>
 						</div>
 						<div className="text-left">
@@ -60,7 +60,7 @@ const Overlay: React.FC<Props> = ({ closeOverlay }) => {
 						onSubmit={(event) => {
 							event.preventDefault();
 							mutate({
-								authorId: userDetails.picHash,
+								authorId: userDetails.userId,
 								postContent: post.trim(),
 							});
 							setpost("");
