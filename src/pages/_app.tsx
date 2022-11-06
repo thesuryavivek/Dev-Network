@@ -1,18 +1,22 @@
 import "../styles/globals.css";
 import Head from "next/head";
 import { withTRPC } from "@trpc/next";
-import { AppType } from "next/dist/shared/lib/utils";
+import { SessionProvider } from "next-auth/react";
+import { Session } from "next-auth";
 import type { AppRouter } from "./api/trpc/[trpc]";
+import type { AppProps } from "next/app";
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }: AppProps<{ session: Session }>) => {
 	return (
 		<>
 			<Head>
 				<title>Social media demo app</title>
 			</Head>
-			<div className="w-screen overflow-x-hidden">
-				<Component {...pageProps} />
-			</div>
+			<SessionProvider session={pageProps.session}>
+				<div className="w-screen overflow-x-hidden">
+					<Component {...pageProps} />
+				</div>
+			</SessionProvider>
 		</>
 	);
 };
